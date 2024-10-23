@@ -11,6 +11,19 @@
 class Solution(object):
     def inorderTraversal(self, root):
         res = []
+        stack = []
+        cur = root
+        
+        #itterative approach
+        
+        while cur or stack:
+            while cur:
+                stack.append(cur)
+                cur = cur.left
+            cur = stack.pop()
+            res.append(cur.val)
+            cur = cur.right
+        return res
 
         #reccursive solution
         
@@ -20,7 +33,7 @@ class Solution(object):
             inorder(root.left)
             res.append(root.val)
             inorder(root.right)
+            return res
 
-        inorder(root)
-        return res
+        # inorder(root)
         
