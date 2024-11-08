@@ -6,9 +6,16 @@
 
 # original
 
-class Solution(object):
-    def singleNumber(self, nums):
-        for i in nums:
-            if nums.count(i) < 2:
-                return i
-        
+# class Solution(object):
+#     def singleNumber(self, nums):
+#         for i in nums:
+#             if nums.count(i) < 2:
+#                 return i
+
+
+# optimal solution
+
+r = 0
+for n in nums:
+    r = r ^ n
+return r
