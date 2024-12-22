@@ -11,4 +11,23 @@ class Solution(object):
             if c.isalnum():
                 newStr += c.lower()
         return newStr == newStr[::-1]
-                
+
+
+# recursion way
+
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        s = s.lower()
+        fs = []
+        for i in s:
+            if i.isalnum():
+                fs.append(i)
+        def helper(l = 0, r = None):
+            if r is None:
+                r = len(fs) - 1
+            if l >= r:
+                return True
+            if fs[l] != fs[r]:
+                return False
+            return helper(l + 1, r - 1)
+        return helper()
