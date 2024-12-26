@@ -10,3 +10,15 @@ class Solution:
                 ans.append(i)
                 nums1.remove(i)
         return ans
+    
+# using counter object
+
+class Solution:
+    def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        c = Counter(nums1)
+        output = []
+        for n in nums2:
+            if c[n] > 0:
+                output.append(n)
+                c[n] -= 1
+        return output 
