@@ -14,3 +14,14 @@ class Solution:
             return True
         else: 
             return False
+        
+# brute force approach (TLE ERROR)
+
+class Solution:
+    def isPerfectSquare(self, num: int) -> bool:
+        # brute force approach
+
+        for i in range(1, num + 1):
+            if i * i == num:
+                return True
+        return False
