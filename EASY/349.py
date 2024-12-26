@@ -23,3 +23,16 @@ class Solution:
                 result.append(num)
                 
         return result
+    
+# hashset neetcode
+
+class Solution:
+    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        res = set(nums1)
+
+        ans = []
+        for n in nums2:
+            if n in res:
+                ans.append(n)
+                res.remove(n)
+        return ans
