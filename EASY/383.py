@@ -15,3 +15,13 @@ class Solution:
                     break
         return True
     
+# counter approach, slower but easier logic
+
+count = Counter(magazine)
+
+        for i in ransomNote:
+            if count[i] == 0:
+                return False
+            else:
+                count[i] -= 1
+        return True
