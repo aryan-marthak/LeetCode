@@ -32,6 +32,8 @@ class Solution:
     
 # neetcode approach (split the string from the start, count the no. of ones already, iterate through all the split points while checking if the new index has zero or one, if it is zero increment no. of zeros keeping the no. of ones the same, and if it is a one, reduce the count of ones)
 
+# prefix sum approach
+
         zero = 0
         one = s.count("1")
         res = 0
