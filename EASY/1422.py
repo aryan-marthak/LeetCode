@@ -4,6 +4,8 @@
 
 # The score after splitting a string is the number of zeros in the left substring plus the number of ones in the right substring.
 
+
+
 # brute force approach (splitting string into left and right, finding no. of zeroes and ones in left and right, sum and compare with a max variable)
 
 class Solution:
@@ -26,3 +28,18 @@ class Solution:
             if x > Max:
                 Max = x
         return Max
+    
+    
+# neetcode approach (split the string from the start, count the no. of ones already, iterate through all the split points while checking if the new index has zero or one, if it is zero increment no. of zeros keeping the no. of ones the same, and if it is a one, reduce the count of ones)
+
+        zero = 0
+        one = s.count("1")
+        res = 0
+
+        for i in range(len(s) - 1):
+            if s[i] == "0":
+                zero += 1
+            else:
+                one -= 1
+            res = max(res, zero + one)
+        return res
