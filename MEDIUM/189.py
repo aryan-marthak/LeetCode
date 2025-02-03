@@ -10,4 +10,3 @@ class Solution:
             temp[(i+k) % len(nums)] = nums[i]
         for i in range(len(nums)):
             nums[i] = temp[i]
-
