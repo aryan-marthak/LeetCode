@@ -6,6 +6,8 @@
 
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
+        
+        # KADANE's ALGO
 
         sum = 0
         maxi = float('-inf')
