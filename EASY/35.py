@@ -14,7 +14,7 @@ class Solution(object):
             if nums[mid] == target:
                 return mid
             if nums[mid] > target:
-                end -= 1
+                end = mid - 1
             else:
-                start += 1
+                start = mid + 1
         return start
