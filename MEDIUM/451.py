@@ -20,3 +20,15 @@ class Solution:
                 res += c * i
 
         return res
+    
+# heaps
+class Solution:
+    def frequencySort(self, s: str) -> str:
+        counter = Counter(s)
+        temp = [(-freq, char) for char, freq in counter.items()]
+        heapq.heapify(temp)
+        result = ''
+        while temp:
+            freq, char = heapq.heappop(temp)
+            result += char * -freq
+        return result
