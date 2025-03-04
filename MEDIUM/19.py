@@ -20,3 +20,20 @@ class Solution:
                 p2 = p2.next
         p2.next = p2.next.next
         return dummy.next
+    
+    # MY OWN METHOD
+    
+        dummy = ListNode(0, head)
+        temp = dummy
+        Len = 0
+        while temp.next:
+            Len += 1
+            temp = temp.next
+        
+        Index = Len - n
+
+        p1 = dummy
+        for i in range(Index):
+            p1 = p1.next
+        p1.next = p1.next.next
+        return dummy.next
