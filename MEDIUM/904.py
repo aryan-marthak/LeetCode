@@ -10,6 +10,29 @@
 
 # Given the integer array fruits, return the maximum number of fruits you can pick.
 
+# SLIDING WINDOW Approach
+
+class Solution:
+    def totalFruit(self, fruits: List[int]) -> int:
+        maxlen = 0
+        r = 0
+        l = 0
+        map = {}
+
+        while r < len(fruits):
+            map[fruits[r]] = map.get(fruits[r], 0) + 1
+
+            if len(map) > 2:
+                while len(map) > 2:
+                    map[fruits[l]] -= 1
+                    if map[fruits[l]] == 0:
+                        del map[fruits[l]]
+                    l += 1
+            if len(map) <= 2:
+                maxlen = max(maxlen, r - l + 1)
+            r += 1
+        return maxlen 
+
 # BRUTE FORCE Approach
 
 class Solution:
