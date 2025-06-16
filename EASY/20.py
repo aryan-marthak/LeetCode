@@ -19,3 +19,15 @@ class Solution:
                     return False
                 stack.pop()
         return not stack 
+    
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = []
+        dictionary = {"(" : ")", "{" : "}", "[" : "]"}
+
+        for c in s:
+            if c in dictionary:
+                stack.append(c)
+            elif not stack or dictionary[stack.pop()] != c:
+                return False
+        return not stack
