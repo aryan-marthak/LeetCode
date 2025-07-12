@@ -8,6 +8,29 @@
 
 class Solution:
     def shipWithinDays(self, weights: List[int], days: int) -> int:
+        # BINARY SEARCH Approach
+        
+        lbound = max(weights)
+        rbound = sum(weights)
+        
+        def helper(m):
+            ships = 1
+            curr_w = 0
+            for w in weights:
+                if curr_w + w > m:
+                    ships += 1
+                    curr_w = 0
+                curr_w += w
+            return ships
+
+        while lbound <= rbound:
+            m = (lbound + rbound) // 2
+            if helper(m) <= days:
+                rbound = m - 1
+            else: 
+                lbound = m + 1
+        return lbound
+                
         # BRUTE FORCE Approach
         
         lbound = max(weights)
