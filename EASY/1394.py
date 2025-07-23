@@ -6,6 +6,18 @@
 
 class Solution:
     def findLucky(self, arr: List[int]) -> int:
+        
+        # COUNTER
+        
+        from collections import Counter
+
+        freq = Counter(arr)
+        temp = -1
+
+        for i, j in freq.items():
+            if i == j:
+                temp = max(temp, i)
+        return temp
 
         # BRUTE FORCE APPROACH
 
