@@ -13,13 +13,29 @@
 
 class Solution:
     def lastStoneWeight(self, stones: List[int]) -> int:
+        # MAX HEAP (used min heap but with negative values to simulate max heap as it is not available in python) 
+
+        stones = [-s for s in stones]
+        heapq.heapify(stones)
+
         while len(stones) > 1:
-            stones.sort()
-            last = stones.pop()
-            slast = stones.pop()
-            if last != slast:
-                stones.append(last - slast)
-        if stones:
-            return stones[0]
-        else:
-            return 0
+            first = heapq.heappop(stones)
+            second = heapq.heappop(stones)
+            if second > first:
+                heapq.heappush(stones, first - second)
+        
+        stones.append(0)
+        return abs(stones[0])
+        
+        # SORTING 
+        
+        # while len(stones) > 1:
+        #     stones.sort()
+        #     last = stones.pop()
+        #     slast = stones.pop()
+        #     if last != slast:
+        #         stones.append(last - slast)
+        # if stones:
+        #     return stones[0]
+        # else:
+        #     return 0
