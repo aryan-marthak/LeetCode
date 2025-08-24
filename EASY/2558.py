@@ -10,10 +10,24 @@
 
 class Solution:
     def pickGifts(self, gifts: List[int], k: int) -> int:
-        for i in range(k):
-            l = 0
-            for j in range(1, len(gifts)):
-                if gifts[j] > gifts[l]:
-                    l = j
-            gifts[l] = int(sqrt(gifts[l])) 
-        return sum(gifts)
+        # MAXHEAP
+        
+        for i in range(len(gifts)):
+            gifts[i] = -gifts[i]
+        heapq.heapify(gifts)
+
+        for _ in range(k):
+            n = -heapq.heappop(gifts)
+            heapq.heappush(gifts, -floor(sqrt(n)))
+
+        return -sum(gifts)
+        
+        # SIMULATION Method
+        
+        # for i in range(k):
+        #     l = 0
+        #     for j in range(1, len(gifts)):
+        #         if gifts[j] > gifts[l]:
+        #             l = j
+        #     gifts[l] = int(sqrt(gifts[l])) 
+        # return sum(gifts)
