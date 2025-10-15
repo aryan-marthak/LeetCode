@@ -8,3 +8,15 @@
 
 # A digit string is a string consisting of digits 0 through 9 that may contain leading zeros.
 
+# TLE SOLUTION
+class Solution:
+    def countGoodNumbers(self, n: int) -> int:
+        total_even = (n + 1) // 2
+        total_odd = n // 2
+
+        even_count = (5 ** total_even) % ((10 ** 9) + 7)
+        odd_count = (4 ** total_odd) % ((10 ** 9) + 7)
+
+        total = (even_count * odd_count) % ((10 ** 9) + 7)
+
+        return total
