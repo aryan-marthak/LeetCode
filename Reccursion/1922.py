@@ -8,6 +8,26 @@
 
 # A digit string is a string consisting of digits 0 through 9 that may contain leading zeros.
 
+# MODULAR EXPONENTIATION
+
+class Solution:
+    def countGoodNumbers(self, n: int) -> int:
+        MOD = 10**9 + 7
+
+        def mod_pow(a, b):
+            result = 1
+            a = a % MOD
+            while b > 0:
+                if b % 2 == 1:
+                    result = (result * a) % MOD
+                a = (a * a) % MOD
+                b //= 2
+            return result
+
+        total_even = (n + 1) // 2
+        total_odd = n // 2
+        return (mod_pow(5, total_even) * mod_pow(4, total_odd)) % MOD
+
 # TLE SOLUTION
 class Solution:
     def countGoodNumbers(self, n: int) -> int:
