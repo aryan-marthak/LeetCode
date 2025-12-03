@@ -5,18 +5,18 @@
 # A perfect square is an integer that is the square of an integer; in other words, it is the product of some integer with itself. For example, 1, 4, 9, and 16 are perfect squares while 3 and 11 are not.
 
 class Solution:
-    def numSquares(self, n: int) -> int:
-        def dfs(n):
-            if target == 0:
-                return 0
-            
-            temp = n
-            for i in range(1, n):
-                if i * i > n:
-                    break
-                temp = min(temp, 1 + dfs(n - (i * i)))
-            return temp
-        return dfs(n)
+        def numSquares(self, n: int) -> int:
+            def dfs(n):
+                if target == 0:
+                    return 0
+                
+                temp = n
+                for i in range(1, n):
+                    if i * i > n:
+                        break
+                    temp = min(temp, 1 + dfs(n - (i * i)))
+                return temp
+            return dfs(n)
         
 class Solution:
     def numSquares(self, n: int) -> int:
