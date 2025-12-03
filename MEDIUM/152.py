@@ -8,6 +8,21 @@
 
 # Note that the product of an array with a single element is the value of that element.
 
+# Brute Force Approach
+class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        res = nums[0]
+
+        for i in range(len(nums)):
+            cur = nums[i]
+            res = max(res, cur)
+            for j in range(i + 1, len(nums)):
+                cur *= nums[j]
+                res = max(res, cur)
+
+        return res
+
+# Dynamic Programming Approach
 class Solution:
     def maxProduct(self, nums: List[int]) -> int:
         res = max(nums)
