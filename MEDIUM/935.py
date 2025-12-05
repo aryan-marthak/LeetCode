@@ -12,6 +12,32 @@
 
 # As the answer may be very large, return the answer modulo 109 + 7.
 
+# TOP DOWN DP WITH MEMOIZATION
+class Solution:
+    def knightDialer(self, n: int) -> int:
+        cache = {}
+        mod = 10**9 + 7
+        moves = [
+            [4, 6], [6, 8], [7, 9], [4, 8], [3, 9, 0], [], [1, 7, 0], [2, 6], [1, 3], [2, 4]
+        ]
+        def dfs(digit, length):
+            if length == n:
+                return 1
+            
+            if (digit, length) in cache:
+                return cache[(digit, length)]
+        
+            total = 0
+            for i in moves[digit]:
+                total = (total + dfs(i, length + 1)) % mod
+            cache[(digit, length)] = total
+            return total
+        ans = 0
+        for i in range(10):
+            ans = (ans + dfs(i, 1)) % mod
+        return ans
+
+# BOTTOM UP DP
 class Solution:
     def knightDialer(self, n: int) -> int:
         mod = 10**9 + 7
