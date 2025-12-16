@@ -6,6 +6,7 @@
 
 # Return the amount of money you will have leftover after buying the two chocolates. If there is no way for you to buy two chocolates without ending up in debt, return money. Note that the leftover must be non-negative.
 
+# BRUTE FORCE
 class Solution:
     def buyChoco(self, prices: List[int], money: int) -> int:
         res = -1
@@ -14,3 +15,25 @@ class Solution:
                 if prices[i] + prices[j] <= money:
                     res = max(res, money - prices[i] - prices[j])
         return res if res != -1 else money
+    
+# SORTING
+class Solution:
+    def buyChoco(self, prices: List[int], money: int) -> int:
+        prices.sort()
+        if prices[0] + prices[1] <= money:
+            return money - prices[0] - prices[1]
+        return money
+
+# ONE PASS
+class Solution:
+    def buyChoco(self, prices: list[int], money: int) -> int:
+        i = j = float('inf')
+
+        for p in prices:
+            if p < i:
+                i, j = p, i
+            elif p < j:
+                j = p
+
+        moneyleft = money - i - j
+        return moneyleft if moneyleft >= 0 else money
