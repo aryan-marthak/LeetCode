@@ -9,6 +9,31 @@
 
 # Return the number of teams you can form given the conditions. (soldiers can be part of multiple teams).
 
+# RECURSION WITH MEMOIZATION (TOP-DOWN DP)
+class Solution:
+    def numTeams(self, rating: List[int]) -> int:
+        cache = {}
+        def backtrack(i, ascend, count):
+            if (i, ascend, count) in cache:
+                return cache[(i, ascend, count)]
+            if count == 3:
+                return 1
+            if i == len(rating):
+                return 0
+            res = 0
+            for j in range(i + 1, len(rating)):
+                if ascend and rating[i] < rating[j]:
+                    res += backtrack(j, ascend, count + 1)
+                if not ascend and rating[i] > rating[j]:
+                    res += backtrack(j, ascend, count + 1)
+            cache[(i, ascend, count)] = res
+            return res
+        res = 0
+        for i in range(len(rating)):
+            res += backtrack(i, True, 1)
+            res += backtrack(i, False, 1)
+        return res
+    
 class Solution:
     def maxAlternatingSum(self, nums: List[int]) -> int:
         dp = {}
