@@ -50,3 +50,52 @@ class Solution:
             dp[(i, open)] = res
             return res
         return dfs(0, 0)
+    
+# STACK
+class Solution:
+    def checkValidString(self, s: str) -> bool:
+        left = []
+        star = []
+        for i, ch in enumerate(s):
+            if ch == '(':
+                left.append(i)
+            elif ch == '*':
+                star.append(i)
+            else:
+                if not left and not star:
+                    return False
+                if left:
+                    left.pop()
+                else:
+                    star.pop()
+
+        while left and star:
+            if left.pop() > star.pop():
+                return False
+        return not left
+    
+# GREEDY
+class Solution:
+    def checkValidString(self, s: str) -> bool:
+        minOpen = 0 
+        maxOpen = 0
+
+        for c in s:
+            if c == "(":
+                minOpen += 1
+                maxOpen += 1
+
+            elif c == ")":
+                minOpen -= 1
+                maxOpen -= 1
+
+            else:  # '*'
+                minOpen -= 1    
+                maxOpen += 1  
+
+            if maxOpen < 0:
+                return False
+
+            if minOpen < 0:
+                minOpen = 0
+        return minOpen == 0
