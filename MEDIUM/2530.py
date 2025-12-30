@@ -1,0 +1,25 @@
+# 2530. Maximal Score After Applying K Operations
+
+# You are given a 0-indexed integer array nums and an integer k. You have a starting score of 0.
+
+# In one operation:
+
+#     choose an index i such that 0 <= i < nums.length,
+#     increase your score by nums[i], and
+#     replace nums[i] with ceil(nums[i] / 3).
+
+# Return the maximum possible score you can attain after applying exactly k operations.
+
+# The ceiling function ceil(val) is the least integer greater than or equal to val.
+
+class Solution:
+    def maxKelements(self, nums: List[int], k: int) -> int:
+        res = 0
+        maxheap = [-i for i in nums]
+        heapq.heapify(maxheap)
+        while k:
+            temp = -heapq.heappop(maxheap)
+            res += temp
+            k -= 1
+            heapq.heappush(maxheap, - math.ceil(temp / 3))
+        return res
