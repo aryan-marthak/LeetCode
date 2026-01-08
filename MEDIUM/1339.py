@@ -6,3 +6,31 @@
 
 # Note that you need to maximize the answer before taking the mod and not after taking it.
 
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def maxProduct(self, root: Optional[TreeNode]) -> int:
+        MOD = 10 ** 9 + 7
+        def dfs(node):
+            if not node:
+                return 0
+            node.val += dfs(node.left) + dfs(node.right)
+            return node.val
+        total = dfs(root)
+        res = 0
+        q = deque([root])
+        while q:
+            node = q.popleft()
+            if not node:
+                continue
+            curr = (total - node.val) * node.val
+            res = max(res, curr)
+            if node.left:
+                q.append(node.left)
+            if node.right:
+                q.append(node.right)
+        return res % MOD
