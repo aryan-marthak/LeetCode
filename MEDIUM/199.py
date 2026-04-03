@@ -17,12 +17,12 @@ class Solution:
         level = []
         queue = [root]
         while queue != [] and root is not None:
-            for node in queue:
-                if node.left:
-                    level.append(node.left)
-                if node.right:
-                    level.append(node.right)
-            res.append(node.val)
+            for i in queue:
+                if i.left:
+                    level.append(i.left)
+                if i.right:
+                    level.append(i.right)
+            res.append(i.val)
             queue = level
             level = []
         return res
