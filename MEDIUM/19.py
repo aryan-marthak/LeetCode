@@ -8,32 +8,43 @@
 #         self.val = val
 #         self.next = next
 class Solution:
-    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
-        dummy = ListNode(0, head)
-        p1 = head
-        p2 = dummy
-        count = 0
-        while p1:
-            p1 = p1.next
-            count += 1
-            if count > n:
-                p2 = p2.next
-        p2.next = p2.next.next
-        return dummy.next
-    
-    # MY OWN METHOD
-    
-        dummy = ListNode(0, head)
-        temp = dummy
-        Len = 0
-        while temp.next:
-            Len += 1
-            temp = temp.next
-        
-        Index = Len - n
+    def helper(self, node, n):
+        if not node:
+            return 0
+        index = self.helper(node.next, n) + 1
+        if index == n + 1:
+            node.next = node.next.next
+        return index
 
-        p1 = dummy
-        for i in range(Index):
-            p1 = p1.next
-        p1.next = p1.next.next
-        return dummy.next
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        index = self.helper(head, n)
+        if index == n:
+            return head.next
+        return head
+        
+        # dummy = ListNode(0, head)
+        # p1 = head
+        # p2 = dummy
+        # count = 0
+        # while p1:
+        #     p1 = p1.next
+        #     count += 1
+        #     if count > n:
+        #         p2 = p2.next
+        # p2.next = p2.next.next
+        # return dummy.next
+            
+
+        # dummy = ListNode(0, head)
+        # temp = dummy
+        # Len = 0
+        # while temp.next:
+        #     Len += 1
+        #     temp = temp.next
+        # Index = Len - n
+        # p1 = dummy
+        # for i in range(Index):
+        #     p1 = p1.next
+        # p1.next = p1.next.next
+        # return dummy.next
+        
