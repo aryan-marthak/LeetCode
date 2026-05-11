@@ -6,34 +6,22 @@
 
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
-        if not grid:
-            return 0
-
         m = len(grid)
-        n = len(grid[0]) 
-        island = 0
-        
-        def dfs(i, j):
-            if i < 0 or i >= m or j < 0 or j >= n or grid[i][j] != "1":
-                return
-            grid[i][j] = "0"
-            dfs(i - 1, j)
-            dfs(i + 1, j)
-            dfs(i, j - 1)
-            dfs(i, j + 1)
-            # if i >= 1:
-            #     dfs(i - 1, j)
-            # if j >= 1:
-            #     dfs(i, j - 1)
-            # if i + 1 < m:
-            #     dfs(i + 1, j)
-            # if j + 1 < n:
-            #     dfs(i, j + 1)
-        
-        for i in range(m):
-            for j in range(n):
-                if grid[i][j] == "1":
-                    island += 1
-                    dfs(i, j)
+        n = len(grid[0])
+        islands = 0 
+        Ds = [[1, 0], [0, 1], [-1, 0], [0, -1]]
 
-        return island
+        def dfs(r, c):
+            if (r < 0 or c < 0 or r >= m or c >= n or grid[r][c] == "0"):
+                return
+            
+            grid[r][c] = "0"
+            for i, j in Ds:
+                dfs(r + i, c + j)
+
+        for r in range(m):
+            for c in range(n):
+                if grid[r][c] == "1":
+                    dfs(r, c)
+                    islands += 1
+        return islands
