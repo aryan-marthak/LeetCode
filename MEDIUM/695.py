@@ -8,28 +8,46 @@
 
 class Solution:
     def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
-        max_land = 0
-        m = len(grid)
-        n = len(grid[0])
+        m, n = len(grid), len(grid[0])
+        maxArea = 0
 
         if not grid:
             return 0
 
-        def dfs(m, n, max_land):
-            temp = 0
-            if i < 0 or i >= m or j < 0 or j >= n or grid[i][j] != "1":
-                temp += 1
-                max_land = max(temp, max_land)
-                return
-            grid[i][j] = "0"
-            dfs(i - 1, j)
-            dfs(i + 1, j)
-            dfs(i, j - 1)
-            dfs(i, j + 1)            
+        def dfs(r, c):
+            if (r < 0 or c < 0 or r >= m or c >= n or grid[r][c] == 0):
+                return 0
+
+            grid[r][c] = 0
+            temp = 1
+            temp += dfs(r + 1, c)
+            temp += dfs(r - 1, c)
+            temp += dfs(r, c + 1)
+            temp += dfs(r, c - 1)
+            return temp
 
         for i in range(m):
             for j in range(n):
                 if grid[i][j] == 1:
-                    dfs(i, j, max_land)
+                    area = dfs(i, j)
+                    maxArea = max(maxArea, area)
+        return maxArea
+    
+        # BFS Approach
+        # Ds = [[0, 1], [1, 0], [-1, 0], [0, -1]]
+        # def bfs(r, c):
+        #     q = deque()
+        #     q.append((r, c))
+        #     grid[r][c] = 0
+        #     res = 1
 
-        return max_land
+        #     while q:
+        #         row, col = q.popleft()
+        #         for i, j in Ds:
+        #             nr, nc = row + i, col + j
+        #             if (nr < 0 or nc < 0 or nr >= m or nc >= n or grid[nr][nc] == 0):
+        #                 continue
+        #             q.append((nr, nc))
+        #             grid[nr][nc] = 0
+        #             res += 1
+        #     return res
