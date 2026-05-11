@@ -6,6 +6,8 @@
 
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
+        # DFS
+        
         m = len(grid)
         n = len(grid[0])
         islands = 0 
@@ -25,3 +27,22 @@ class Solution:
                     dfs(r, c)
                     islands += 1
         return islands
+    
+        # BFS
+
+        # def dfs(r, c):
+        #     q = deque()
+        #     q.append((r, c))
+        #     grid[r][c] = "0"
+
+        #     while q:
+        #         row, col = q.popleft()
+
+        #         for i, j in Ds:
+        #             nr, nc = row + i, col + j
+
+        #             if (nr < 0 or nc < 0 or nr >= m or nc >= n or grid[nr][nc] == "0"):
+        #                 continue
+        #             q.append((nr, nc))
+        #             grid[nr][nc] = "0"
+    
