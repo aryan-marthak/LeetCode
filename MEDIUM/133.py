@@ -43,3 +43,19 @@ class Solution:
             return
         visited = {}
         return self.clone(node, visited)
+    
+from typing import Optional
+class Solution:
+    def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
+        temp = {}
+
+        def clone(node):
+            if node in temp:
+                return temp[node]
+            
+            copy = Node(node.val)
+            temp[node] = copy
+            for i in node.neighbors:
+                copy.neighbors.append(clone(i))
+            return copy
+        return clone(node) if node else None
