@@ -22,3 +22,27 @@ class Solution:
             else:
                 nums[i] = max(nums[i] + nums[i - 2], nums[i - 1])
         return nums[-1]
+
+        # Recursion TLE
+
+        # def dfs(i):
+        #     if i >= len(nums):
+        #         return 0
+        #     return max(dfs(i + 1),
+        #                nums[i] + dfs(i + 2))
+
+        # return dfs(0)
+
+        # TOP DOWN DP
+
+        memo = [-1] * len(nums)
+
+        def dfs(i):
+            if i >= len(nums):
+                return 0
+            if memo[i] != -1:
+                return memo[i]
+            memo[i] = max(dfs(i + 1), nums[i] + dfs(i + 2))
+            return memo[i]
+
+        return dfs(0)
