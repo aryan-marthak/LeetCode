@@ -30,7 +30,7 @@ class Solution:
 class Solution:
         def numSquares(self, n: int) -> int:
             def dfs(n):
-                if target == 0:
+                if n == 0:
                     return 0
                 
                 temp = n
@@ -41,7 +41,7 @@ class Solution:
                 return temp
             return dfs(n)
         
-
+g
 # Bottom up approach with tabulation
 class Solution:
     def numSquares(self, n: int) -> int:
