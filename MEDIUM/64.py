@@ -8,6 +8,18 @@
 class Solution:
     def minPathSum(self, grid: List[List[int]]) -> int:
         m, n = len(grid), len(grid[0])
+        def dfs(r, c):
+            if r >= m or c >= n:
+                return float('inf')
+            if r == m - 1 and c == n - 1:
+                return grid[r][c]
+            return grid[r][c] + min(dfs(r + 1, c), dfs(r, c + 1))
+        return dfs(0, 0)
+
+# RECURSION WITH MEMOIZATION (TOP-DOWN DP)
+class Solution:
+    def minPathSum(self, grid: List[List[int]]) -> int:
+        m, n = len(grid), len(grid[0])
         dp = {}
         def dfs(r, c):
             if r >= m or c >= n:
