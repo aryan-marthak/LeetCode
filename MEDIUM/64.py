@@ -4,7 +4,7 @@
 
 # Note: You can only move either down or right at any point in time.
 
-# RECURSION WITH MEMOIZATION (TOP-DOWN DP)
+# RECURSION 
 class Solution:
     def minPathSum(self, grid: List[List[int]]) -> int:
         m, n = len(grid), len(grid[0])

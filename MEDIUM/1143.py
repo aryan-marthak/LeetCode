@@ -24,6 +24,8 @@ class Solution:
             return cache[(i, j)]
         return dfs(0, 0)
 
+        # BRUTE FORCE - RECURSION
+
         # def dfs(i, j):
         #     if i == len(text1) or j == len(text2):
         #         return 0
