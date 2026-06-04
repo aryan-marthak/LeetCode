@@ -25,3 +25,8 @@ class Solution:
             return dp[(l, r)]
 
         return dfs(0, len(piles) - 1) > (len(piles) // 2)
+
+# Since the game is played optimally, the person playing first would always win
+class Solution:
+    def stoneGame(self, piles: List[int]) -> bool:
+        return True
