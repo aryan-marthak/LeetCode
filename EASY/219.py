@@ -2,19 +2,26 @@
 
 # Given an integer array nums and an integer k, return true if there are two distinct indices i and j in the array such that nums[i] == nums[j] and abs(i - j) <= k.
 
-# class Solution(object):
-#     def containsNearbyDuplicate(self, nums, k):
-#         res = {}
+class Solution(object):
+    def containsNearbyDuplicate(self, nums, k):
+        for i in range(len(nums)):
+            for j in range(i + 1, min(i + k + 1, len(nums))):
+                if nums[i] == nums[j]:
+                    return True
+        return False
+
+class Solution(object):
+    def containsNearbyDuplicate(self, nums, k):
+        res = {}
     
-#         for i in range(len(nums)):
-#             if nums[i] in res:
-#                 if i - res[nums[i]] <= k:
-#                     return True
-#             res[nums[i]] = i
-#         return False
+        for i in range(len(nums)):
+            if nums[i] in res:
+                if i - res[nums[i]] <= k:
+                    return True
+            res[nums[i]] = i
+        return False
 
 # better solution sliding window
-
 class Solution:
     def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
         l = 0
