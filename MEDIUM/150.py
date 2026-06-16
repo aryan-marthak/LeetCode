@@ -13,6 +13,7 @@
 #     The input represents a valid arithmetic expression in a reverse polish notation.
 #     The answer and all the intermediate calculations can be represented in a 32-bit integer.
 
+# STACK SOLUTION
 class Solution:
     def evalRPN(self, tokens: List[str]) -> int:
         stack = []
@@ -30,3 +31,24 @@ class Solution:
             else:
                 stack.append(int(c))
         return stack[0]
+    
+# Recursive solution
+class Solution:
+    def evalRPN(self, tokens: List[str]) -> int:
+        def dfs():
+            token = tokens.pop()
+            if token not in "+-*/":
+                return int(token)
+            
+            right = dfs()
+            left = dfs()
+
+            if token == "+":
+                return left + right
+            elif token == "-":
+                return left - right
+            elif token == "*":
+                return left * right
+            elif token == "/":
+                return int(left / right)
+        return dfs()
