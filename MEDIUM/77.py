@@ -17,3 +17,19 @@ class Solution:
                 path.pop()
         backtrack(1, [])
         return res
+
+class Solution:
+    def combine(self, n: int, k: int) -> List[List[int]]:
+        res = []
+        def bt(i, curr):
+            if len(curr) == k:
+                res.append(curr.copy())
+                return
+            if i > n:
+                return
+            curr.append(i)
+            bt(i + 1, curr)
+            curr.pop()
+            bt(i + 1, curr)
+        bt(1, [])
+        return res
