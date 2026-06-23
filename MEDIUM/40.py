@@ -28,7 +28,7 @@ class Solution:
 # Time Complexity: O(2^n) where n is the number of candidates. In the worst case, we might explore all possible combinations of candidates.
 # Space Complexity: O(k) where k is the maximum depth of the recursion tree, which can be at most n in the worst case. Additionally, we use space to store the result combinations, which can also take up to O(2^n) in the worst case.
 
-Class Solution:
+class Solution:
     def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
         res = []
         candidates.sort()
