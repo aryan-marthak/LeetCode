@@ -13,3 +13,20 @@ class Solution:
                 backtrack(path + [nums[i]], nums[:i] + nums[i+1:])
         backtrack([], nums)
         return res
+    
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        res = []
+        sol = []
+
+        def bt():
+            if len(sol) == len(nums):
+                res.append(sol.copy())
+                return
+            for i in nums:
+                if i not in sol:
+                    sol.append(i)
+                    bt()
+                    sol.pop()
+        bt()
+        return res
