@@ -30,6 +30,9 @@ class Solution:
         backtrack(0, "")
         return res
 
+# Time Complexity: O(3^N * 4^M) where N is the number of digits in the input that maps to 3 letters (2, 3, 4, 5, 6, 8) and M is the number of digits in the input that maps to 4 letters (7, 9).
+# Space Complexity: O(3^N * 4^M) for the output list. 
+
 
 # ITERATIVE APPROACH
 class Solution:
@@ -54,3 +57,8 @@ class Solution:
                     new.append(j + k)
             res = new
         return res
+    
+# Time Complexity: O(3^N * 4^M) where N is the number of digits in the input that maps to 3 letters (2, 3, 4, 5, 6, 8) and M is the number of digits in the input that maps to 4 letters (7, 9).
+# Space Complexity: O(3^N * 4^M) for the output list
+
+# if all digit are 
