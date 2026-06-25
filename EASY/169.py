@@ -15,3 +15,22 @@ class Solution(object):
             maxCount = max(count[n], maxCount)
 
         return res
+
+# Moore's Voting Algorithm
+class Solution:
+    def majorityElement(self, nums):
+        candidate = None
+        count = 0
+
+        for n in nums:
+            if count == 0:
+                count = 1
+                candidate = n
+            elif candidate == n:
+                count += 1
+            else:
+                count -= 1
+        
+        temp = nums.count(candidate)
+        if temp > len(nums) // 2:
+            return candidate
