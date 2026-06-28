@@ -29,3 +29,33 @@ class Solution:
             freq = count.get(color, 0)
             nums[idx : idx + freq] = [color] * freq
             idx += freq
+
+# Three Pointer
+class Solution:
+    def sortColors(self, nums: List[int]) -> None:
+        l, r = 0, len(nums) - 1
+        i = 0
+
+        while i <= r:
+            if nums[i] == 0:
+                nums[l], nums[i] = nums[i], nums[l]
+                l += 1
+            elif nums[i] == 2:
+                nums[i], nums[r] = nums[r], nums[i]
+                r -= 1
+                i -= 1
+            i += 1
+
+# Counting Sort
+class Solution:
+    def sortColors(self, nums: List[int]) -> None:
+        count = [0] * 3
+        for i in nums:
+            count[i] += 1
+        
+        ind = 0
+        for i in range(3):
+            while count[i]:
+                count[i] -= 1
+                nums[ind] = i
+                ind += 1 
