@@ -1,23 +1,50 @@
-# 1292. Maximum Side Length of a Square with Sum Less than or Equal to Threshold
+# 122. Best Time to Buy and Sell Stock II
 
-# Given a m x n matrix mat and an integer threshold, return the maximum side-length of a square with a sum less than or equal to threshold or return 0 if there is no such square.
+# You are given an integer array prices where prices[i] is the price of a given stock on the ith day.
 
+# On each day, you may decide to buy and/or sell the stock. You can only hold at most one share of the stock at any time. However, you can sell and buy the stock multiple times on the same day, ensuring you never hold more than one share of the stock.
 
+# Find and return the maximum profit you can achieve.
 
-# Brute Force Approach
+# Dynamic Programming Top Down
 class Solution:
-    def maxSideLength(self, mat, threshold):
-        m, n = len(mat), len(mat[0])
-        ans = 0
+    def maxProfit(self, prices: List[int]) -> int:
+        dp = {}
+        def helper(i, bought):
+            if i == len(prices):
+                return 0
+            if (i, bought) in dp:
+                return dp[(i, bought)]
+            res = helper(i + 1, bought)
+            if bought:
+                res = max(res, prices[i] + helper(i + 1, False))
+            else:
+                res = max(res, -prices[i] + helper(i + 1, True))
+            dp[(i, bought)] = res
+            return res
+        return helper(0, False)
 
-        for k in range(1, min(m, n) + 1):
-            for i in range(m - k + 1):
-                for j in range(n - k + 1):
-                    s = 0
-                    for x in range(i, i + k):
-                        for y in range(j, j + k):
-                            s += mat[x][y]
-                    if s <= threshold:
-                        ans = max(ans, k)
-
-        return ans
+# Brute Force Recursion
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        def helper(i, bought):
+            if i == len(prices):
+                return 0
+            res = helper(i + 1, bought)
+            if bought:
+                res = max(res, prices[i] + helper(i + 1, False))
+            else:
+                res = max(res, -prices[i] + helper(i + 1, True))
+            return res
+        return helper(0, False)
+    
+# Greedy
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        buy = prices[0]
+        profit = 0
+        for i in prices[1:]:
+            if i > buy:
+                profit += i - buy
+            buy = i
+        return profit
