@@ -25,3 +25,21 @@ class Solution:
         return res         
 # Time complexity: O(n^2)
 # Space complexity: O(n)
+
+# Optimized solution STACK
+class Solution:
+    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        Map = {v:i for i, v in enumerate(nums1)}
+        res = [-1] * len(nums1)
+        stack = []
+        for i in range(len(nums2)):
+            cur = nums2[i]
+            while stack and cur> stack[-1]:
+                val = stack.pop()
+                idx = Map[val]
+                res[idx] = cur
+            if cur in Map:
+                stack.append(cur)
+        return res
+# Time complexity: O(n)
+# Space complexity: O(n)
